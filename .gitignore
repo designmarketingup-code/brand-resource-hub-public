@@ -1,0 +1,10 @@
+# Private credentials
+.env
+backend/.env
+
+# Dependencies
+node_modules/
+backend/node_modules/
+
+# Local logs
+*.log

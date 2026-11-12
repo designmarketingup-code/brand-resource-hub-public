@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brand Resource Hub</title>
+<style>
+:root{--blue:#2563EB;--blue-d:#1D4ED8;--bg:#F8FAFC;--white:#FFFFFF;--text:#111827;--muted:#64748B;--border:#E2E8F0;--light:#EFF6FF;--ok:#16A34A;--warn:#F59E0B;--bad:#DC2626;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 "Google Sans","Segoe UI",Roboto,-apple-system,Helvetica,Arial,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--white);z-index:10}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--white);border-bottom:1px solid var(--border)}
+.bar{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer;border:0;background:none;text-align:left;padding:0;font:inherit;color:inherit}.logo i{width:36px;height:36px;border-radius:10px;background:var(--blue);color:#fff;display:grid;place-items:center;font-style:normal;font-weight:700}.logo b{display:block;font-size:18px;line-height:1.2}.logo small{display:block;color:var(--muted);font-size:12px}
+main{max-width:1120px;margin:0 auto;padding:48px 24px 72px}h1{font-size:clamp(28px,4vw,40px);line-height:1.15;margin:0 0 8px;text-align:center;letter-spacing:-.02em}.sub{color:var(--muted);text-align:center;margin:0 0 28px;font-size:17px}
+.search{position:relative;max-width:640px;margin:0 auto 24px}.search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--muted)}.search input{width:100%;height:56px;border:1px solid var(--border);border-radius:28px;padding:0 20px 0 50px;font:inherit;font-size:17px;background:var(--white);box-shadow:0 1px 2px rgba(15,23,42,.06);outline:none}.search input:focus,.f input:focus,.f select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+.tabs{display:flex;justify-content:center;gap:8px;margin-bottom:32px;flex-wrap:wrap}.tab{border:1px solid var(--border);background:var(--white);color:var(--text);border-radius:999px;padding:10px 20px;font:inherit;font-weight:500;cursor:pointer}.tab:hover{background:var(--light)}.tab[aria-selected=true]{background:var(--light);border-color:var(--blue);color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.grid{grid-template-columns:1fr}main{padding:32px 16px 56px}.bar{padding:12px 16px}.logo small{display:none}}
+.card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 1px 2px rgba(15,23,42,.04);display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:border-color .12s,box-shadow .12s}.card:hover{border-color:#BFDBFE;box-shadow:0 2px 8px rgba(15,23,42,.08)}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.card h3{margin:0;font-size:20px}.cat{color:var(--muted);font-size:14px;margin-bottom:10px}.active{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ok);background:#F0FDF4;border-radius:999px;padding:2px 10px;white-space:nowrap}.active::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--blue);background:var(--blue);color:#fff;font:inherit;font-weight:500;text-decoration:none;cursor:pointer;width:100%;transition:background .12s}.btn:hover{background:var(--blue-d)}.btn:active{transform:translateY(1px)}.btn.sec{background:var(--white);color:var(--blue)}.btn.sec:hover{background:var(--light)}.btn.auto{width:auto}.btn.danger{background:var(--white);color:var(--bad);border-color:#FECACA}.btn.danger:hover{background:#FEF2F2}.btn:focus-visible,.tab:focus-visible,.card:focus-visible{outline:3px solid rgba(37,99,235,.35);outline-offset:2px}.btn svg{flex:none}.btn .ext{margin-left:auto;opacity:.8}.card .btn{margin-top:8px}.btn:disabled{opacity:.6;cursor:not-allowed}
+.empty{text-align:center;padding:56px 0;color:var(--muted)}.empty b{display:block;color:var(--text);font-size:20px;margin-bottom:4px}.guide{margin-top:48px;background:var(--light);border:1px solid #BFDBFE;border-radius:16px;padding:24px}.guide h2{margin:0 0 4px;font-size:22px}.guide p{margin:0;color:var(--muted)}.guide h3{margin:16px 0 4px;font-size:16px}.guide h3+p{color:var(--text)}
+.back{background:none;border:0;color:var(--blue);font:inherit;font-weight:500;cursor:pointer;padding:0;margin-bottom:20px}.detail{max-width:720px;margin:0 auto}.detail h1{text-align:left;margin-bottom:4px}.pill{display:inline-block;background:var(--light);color:var(--blue);border-radius:999px;padding:2px 12px;font-size:13px;font-weight:500;margin-bottom:24px}.res{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}.res h3{margin:0}.res p{margin:2px 0 0;color:var(--muted)}.res .btn{width:auto;min-width:220px}
+.nav{display:flex;gap:4px;background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:4px}.nav button{border:0;background:none;font:inherit;font-weight:500;color:var(--muted);padding:8px 18px;border-radius:999px;cursor:pointer}.nav button:hover{color:var(--text)}.nav button[aria-current=page]{background:var(--blue);color:#fff}.nav button:focus-visible{outline:3px solid rgba(37,99,235,.35);outline-offset:2px}@media(max-width:700px){.bar{flex-wrap:wrap}.nav{order:3;width:100%}.nav button{flex:1;padding:8px 10px}}
+.dash{max-width:880px;margin:0 auto}.dash h1,.dash .sub{text-align:left}.dash h1{font-size:clamp(30px,4.5vw,44px)}.feat{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:32px;box-shadow:0 2px 8px rgba(15,23,42,.06)}.fhead{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}.ftile{width:52px;height:52px;border-radius:14px;background:var(--light);color:var(--blue);display:grid;place-items:center;flex:none}.feat h2{margin:0;font-size:28px;line-height:1.2}.feat .cat{margin:0}.feat>p{font-size:17px;color:var(--muted);margin:0 0 24px;max-width:620px}.row{display:flex;gap:12px;flex-wrap:wrap}.row .btn{width:auto}.btn.lg{height:56px;font-size:17px;padding:0 28px;border-radius:12px}.fnote{margin-top:14px;font-size:14px;color:#92400E}
+.act{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;margin-top:20px}.ahead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.ahead h2{margin:0;font-size:20px}.st{font-size:13px;font-weight:500;border-radius:999px;padding:3px 12px;background:var(--bg);color:var(--muted);border:1px solid var(--border)}.st.starting,.st.processing{background:var(--light);color:var(--blue);border-color:#BFDBFE}.st.completed{background:#F0FDF4;color:var(--ok);border-color:#BBF7D0}.st.failed{background:#FEF2F2;color:var(--bad);border-color:#FECACA}.arow{display:flex;gap:16px;align-items:flex-start}.abody{flex:1;min-width:0}.abody>b{display:block;font-weight:500;font-size:17px}.ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--bg);border:1px solid var(--border)}.ic.completed{background:#F0FDF4;border-color:#BBF7D0;color:var(--ok)}.ic.failed{background:#FEF2F2;border-color:#FECACA;color:var(--bad)}.dot{width:10px;height:10px;border-radius:50%;background:#94A3B8;display:block}.spin{width:20px;height:20px;border:2.5px solid #BFDBFE;border-top-color:var(--blue);border-radius:50%;animation:sp .9s linear infinite;display:block}@keyframes sp{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.spin{animation-duration:3s}}.pbar{height:10px;background:var(--light);border-radius:999px;overflow:hidden;margin-top:14px}.pbar i{display:block;height:100%;background:var(--blue);border-radius:999px;transition:width .3s}.meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px;margin-top:8px}.arow+.row{margin-top:16px}@media(max-width:600px){.feat{padding:20px}.row .btn{width:100%}}
+.erow{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px}.erow h3{margin:0 0 12px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:700px){.fields{grid-template-columns:1fr}}.f label{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}.f.w{grid-column:1/-1}.f input,.f select{width:100%;height:44px;border:1px solid var(--border);border-radius:10px;padding:0 12px;font:inherit;background:var(--white);outline:none}.f input:disabled{background:var(--bg);color:var(--muted)}.acts{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;align-items:center}.msg{font-size:14px}.msg.e{color:var(--bad)}.msg.o{color:var(--ok)}
+@media(max-width:600px){.res .btn{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <button class="logo" id="home" aria-label="Home"><i>B</i><span><b>Brand Resource Hub</b><small>Internal Design Resource Center</small></span></button>
+  <nav class="nav" aria-label="Sections"><button id="navAuto">Automation</button><button id="navBrands">Brand Resources</button></nav>
+  <button class="btn sec auto" id="editBtn" hidden>Edit Resources</button>
+</div></header>
+<main id="app" aria-live="polite"></main>
+<script>
+/* Local stand-in for the original claude.ai data adapter. Brand edits are stored in this browser. */
+(function(){
+  var KEY='brand-resource-hub:brands';
+  var SEED=[
+    {"id":"digithaya","category":"fintech","contentSheetUrl":"https://docs.google.com/spreadsheets/d/14IHDemIwuaWk7EfeVmjbuEGUyZLZW5hNFibn_MDyT8w/edit?gid=0#gid=0","guidelineUrl":"https://drive.google.com/drive/folders/17S1iJGFZJIercNYoEOK8jQ3Q7uOuUuI7","name":"Digithaya","uploadFolderUrl":"https://drive.google.com/drive/folders/1MK6ig2ady_5N7z8Ve9JPbK6EjSmwZknZ"},
+    {"id":"khelosports","category":"gaming","contentSheetUrl":"https://docs.google.com/spreadsheets/d/1RyKl9ZTN66WN7aL4lfZRM1_AR-ics2I_4DGCA6bNigU/edit?gid=0#gid=0","guidelineUrl":null,"name":"Khelosports","uploadFolderUrl":"https://drive.google.com/drive/folders/1MK6ig2ady_5N7z8Ve9JPbK6EjSmwZknZ"},
+    {"id":"khelstake","category":"gaming","contentSheetUrl":"https://docs.google.com/spreadsheets/d/1qpZ6YbZIIcnecNcPp3WQD7yisAh7Z0nOx6dcafUVBDU/edit?gid=0#gid=0","guidelineUrl":null,"name":"Khelstake","uploadFolderUrl":"https://drive.google.com/drive/folders/1WwmOqh1EMIE9hhhA6rm6oB9PMFD4dEvX"},
+    {"id":"rugr-sil","category":"fintech","contentSheetUrl":"https://docs.google.com/spreadsheets/d/1LGL1xWP8O5v1xfEEoY50_gdjBCsK7nV_AxNzfU8YLbY/edit?gid=0#gid=0","guidelineUrl":"https://drive.google.com/drive/folders/17S1iJGFZJIercNYoEOK8jQ3Q7uOuUuI7","name":"Rugr Sil","uploadFolderUrl":"https://drive.google.com/drive/folders/1MK6ig2ady_5N7z8Ve9JPbK6EjSmwZknZ"},
+    {"id":"spinmatch","category":"gaming","contentSheetUrl":"https://docs.google.com/spreadsheets/d/1D-VT9c2_YM04KrjVpAkLq_KNT9_X1NoJsZYB70PmLLY/edit?gid=0#gid=0","guidelineUrl":null,"name":"Spinmatch","uploadFolderUrl":"https://drive.google.com/drive/folders/1MK6ig2ady_5N7z8Ve9JPbK6EjSmwZknZ"},
+    {"id":"zrika","category":"fintech","contentSheetUrl":"https://docs.google.com/spreadsheets/d/14IHDemIwuaWk7EfeVmjbuEGUyZLZW5hNFibm_MDyT8w/edit?gid=0#gid=0","guidelineUrl":"https://drive.google.com/drive/folders/17S1iJGFZJIercNYoEOK8jQ3Q7uOuUuI7","name":"Zrika","uploadFolderUrl":"https://drive.google.com/drive/folders/1MK6ig2ady_5N7z8Ve9JPbK6EjSmwZknZ"}
+  ];
+  var subs=[];
+  function load(){try{var v=JSON.parse(localStorage.getItem(KEY));if(Array.isArray(v))return v;}catch(e){}return SEED.slice();}
+  var data=load();
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){}subs.forEach(function(fn){fn();});}
+  function snapshot(){var docs=data.map(function(b){var c=Object.assign({},b);delete c.id;return{id:b.id,exists:true,data:function(){return c;}};});return{docs:docs,size:docs.length,empty:!docs.length};}
+  var db={collection:function(){return{
+    onSnapshot:function(next){subs.push(function(){next(snapshot());});setTimeout(function(){next(snapshot());},0);return function(){};},
+    doc:function(id){return{
+      set:function(value){data=data.filter(function(b){return b.id!==id;}).concat([Object.assign({id:id},value)]);save();return Promise.resolve();},
+      delete:function(){data=data.filter(function(b){return b.id!==id;});save();return Promise.resolve();}
+    };}
+  };}};
+  var user={canEdit:function(){return true;},isOwner:function(){return true;}};
+  window.claude={use:function(name){return Promise.resolve(name==='db'?db:name==='user'?user:null);}};
+})();
+</script>
+<script>
+(function(){
+'use strict';
+var I={
+ sheet:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>',
+ folder:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
+ shield:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+ ext:'<svg class="ext" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+ search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
+};
+var RES={
+ content:{key:'contentSheetUrl',label:'Content Sheet',btn:'Open Content Sheet',icon:'sheet',desc:'Manage and view the brand’s content requirements.'},
+ guide:{key:'guidelineUrl',label:'Brand Guidelines',btn:'Brand Guidelines',icon:'shield',desc:'Review brand-specific design rules before working.'},
+ upload:{key:'uploadFolderUrl',label:'Upload Folder',btn:'Open Upload Folder',icon:'folder',desc:'Upload finished design files to the correct Google Drive folder.'}
+};
+var S={brands:[],ready:false,db:null,canEdit:false,view:'auto',run:{status:'ready',completed:0,total:0,stage:'',error:'',note:''},cat:'gaming',q:'',id:null};
+var app=document.getElementById('app');
+var editBtn=document.getElementById('editBtn');
+var navAuto=document.getElementById('navAuto');
+var navBrands=document.getElementById('navBrands');
+
+function h(tag,attrs,children){
+  var el=document.createElement(tag);attrs=attrs||{};
+  Object.keys(attrs).forEach(function(name){var value=attrs[name];if(name==='class')el.className=value;else if(name==='html')el.innerHTML=value;else if(name.slice(0,2)==='on'&&typeof value==='function')el.addEventListener(name.slice(2),value);else if(value!==false&&value!=null)el.setAttribute(name,value===true?'':value);});
+  (children||[]).forEach(function(child){if(child==null)return;el.appendChild(typeof child==='string'?document.createTextNode(child):child);});
+  return el;
+}
+function resKeys(brand){return brand.category==='fintech'?['content','guide','upload']:['content','upload'];}
+function catName(category){return category==='fintech'?'Fintech':'Gaming';}
+function safeUrl(url){return /^https?:\/\//i.test(url||'');}
+function link(brand,key){var item=RES[key],url=brand[item.key];if(!safeUrl(url))return h('button',{class:'btn sec',disabled:true},[h('span',{html:I[item.icon]}),item.btn+' (link missing)']);return h('a',{class:'btn',href:url,target:'_blank',rel:'noopener noreferrer',onclick:function(event){event.stopPropagation();}},[h('span',{html:I[item.icon]}),item.btn,h('span',{html:I.ext})]);}
+function sorted(){return S.brands.slice().sort(function(a,b){return(a.name||'').localeCompare(b.name||'');});}
+function go(id){S.view=id?'detail':'home';S.id=id||null;if(id)location.hash=id;else history.replaceState(null,'',location.pathname+location.search);render();window.scrollTo(0,0);}
+function fromHash(){var id=location.hash.slice(1);if(id){S.id=id;S.view='detail';}else if(S.view==='detail'){S.id=null;S.view='home';}render();}
+
+function card(brand){
+  var c=h('div',{class:'card',tabindex:'0',role:'link','aria-label':brand.name+' resources',onclick:function(){go(brand.id);},onkeydown:function(event){if(event.key==='Enter'&&event.target===c)go(brand.id);}},[
+    h('div',{class:'top'},[h('h3',{},[brand.name]),h('span',{class:'active'},['Active'])]),
+    h('div',{class:'cat'},[catName(brand.category)+' Brand'])
+  ]);
+  resKeys(brand).forEach(function(key){c.appendChild(link(brand,key));});
+  return c;
+}
+function guidelines(){return h('section',{class:'guide'},[
+  h('h2',{},['Fintech Brand Guidelines']),h('p',{},['Follow the required brand rules before creating or publishing fintech content.']),
+  h('h3',{},['Before creating fintech content']),h('p',{},['Review the relevant brand guidelines before designing content. Open them from the Brand Guidelines button on each fintech brand card.'])
+]);}
+function home(){
+  var list=sorted(),box=h('div');
+  var searchBox=h('input',{type:'search',id:'q',placeholder:'Search brands...','aria-label':'Search brands',autocomplete:'off',value:S.q,oninput:function(event){S.q=event.target.value;drawList();}});
+  box.appendChild(h('h1',{},['Find your brand resources']));
+  box.appendChild(h('p',{class:'sub'},['Quick access to content sheets, upload folders, and brand guidelines.']));
+  box.appendChild(h('div',{class:'search'},[h('span',{html:I.search}),searchBox]));
+  var tabs=h('div',{class:'tabs',role:'tablist'}),out=h('div');
+  [['gaming','Gaming Brands'],['fintech','Fintech Brands']].forEach(function(item){tabs.appendChild(h('button',{class:'tab',role:'tab','data-c':item[0],onclick:function(){S.cat=item[0];S.q='';searchBox.value='';drawList();}},[item[1]]));});
+  box.appendChild(tabs);box.appendChild(out);
+  function drawList(){
+    var q=S.q.trim().toLowerCase(),results;
+    if(q)results=list.filter(function(b){return(b.name||'').toLowerCase().indexOf(q)>-1||(b.category||'').toLowerCase().indexOf(q)>-1||(catName(b.category)+' brands').toLowerCase().indexOf(q)>-1;});
+    else results=list.filter(function(b){return b.category===S.cat;});
+    Array.prototype.forEach.call(tabs.children,function(tab){tab.setAttribute('aria-selected',String(!q&&tab.dataset.c===S.cat));});
+    out.innerHTML='';
+    if(!results.length){out.appendChild(h('div',{class:'empty'},[h('b',{},[S.ready?'No brands found':'Loading…']),S.ready?'Try searching for another brand name.':'']));return;}
+    var grid=h('div',{class:'grid'});results.forEach(function(b){grid.appendChild(card(b));});out.appendChild(grid);
+    if(results.some(function(b){return b.category==='fintech';}))out.appendChild(guidelines());
+  }
+  drawList();return box;
+}
+function detail(){
+  var brand=S.brands.filter(function(item){return item.id===S.id;})[0],box=h('div',{class:'detail'});
+  box.appendChild(h('button',{class:'back',onclick:function(){go();}},['← All brands']));
+  if(!brand){box.appendChild(h('div',{class:'empty'},[h('b',{},[S.ready?'Brand not found':'Loading…'])]));return box;}
+  box.appendChild(h('h1',{},[brand.name]));box.appendChild(h('span',{class:'pill'},[catName(brand.category)]));
+  resKeys(brand).forEach(function(key){var item=RES[key],anchor=link(brand,key);anchor.textContent='';anchor.appendChild(h('span',{html:I[item.icon]}));anchor.appendChild(document.createTextNode('Open '+item.label));if(anchor.tagName==='A')anchor.appendChild(h('span',{html:I.ext}));box.appendChild(h('div',{class:'res'},[h('div',{},[h('h3',{},[item.label]),h('p',{},[item.desc])]),anchor]));});
+  return box;
+}
+
+/* ---------- Khelstake automation ---------- */
+var AUTOMATION_CONFIG={endpoint:'http://localhost:3000/api/khelstake/run'};
+var AUTOMATIONS=[{id:'khelstake',desc:'Automatically generate gaming promotional creatives using your approved content sheet and brand-specific creative workflow.',trigger:function(){return triggerKhelstakeAutomation();}}];
+var AI={
+  flow:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="19" r="2"/><path d="M7 6h10M6 8l5 9M18 8l-5 9"/></svg>',
+  play:'<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+  check:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>',
+  warn:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5M12 17h.01"/><path d="M10.3 4L2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4a2 2 0 0 0-3.4 0z"/></svg>'
+};
+function setAutomationRun(update){Object.assign(S.run,update);if(S.view==='auto')render();}
+window.setAutomationRun=setAutomationRun;
+function parseWorkflowResponse(payload){
+  var workflow=payload;
+  if(payload&&Object.prototype.hasOwnProperty.call(payload,'n8nResponse')){
+    workflow=payload.n8nResponse;
+    if(typeof workflow==='string'){try{workflow=JSON.parse(workflow);}catch(e){workflow={message:workflow};}}
+  }
+  return workflow&&typeof workflow==='object'?workflow:{};
+}
+async function triggerKhelstakeAutomation(){
+  setAutomationRun({status:'starting',note:'Connecting to automation backend. The page will update when n8n finishes.',error:'',completed:0,total:0,stage:''});
+  try{
+    var response=await fetch(AUTOMATION_CONFIG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({source:'Brand Resource Hub',automation:'khelstake'})});
+    var payload=await response.json().catch(function(){return{};});
+    var workflow=parseWorkflowResponse(payload);
+    var isComplete=workflow.status==='completed'||payload.status==='completed';
+    var failed=workflow.success===false||workflow.status==='failed'||payload.success===false;
+    if(!response.ok||failed||!isComplete){
+      var message=workflow.message||payload.message||workflow.error||payload.error||'The automation did not return a completed response.';
+      throw new Error(message);
+    }
+    setAutomationRun({status:'completed',note:workflow.message||payload.message||'All tasks perfectly completed! Check the content sheet for the completed tasks.',error:''});
+  }catch(error){
+    setAutomationRun({status:'failed',note:'Automation failed.',error:error&&error.message?error.message:'An unexpected error occurred.'});
+  }
+}
+function statusPanel(runState,brand,retry){
+  var status=runState.status;
+  var labels={ready:'Ready',starting:'Starting',processing:'Processing',completed:'Completed',failed:'Failed'};
+  var messages={ready:'Ready to process tasks.',starting:runState.note||'Starting your automation...',processing:'Generating creatives using Magnific AI.',completed:runState.note||'All tasks perfectly completed! Check the content sheet for the completed tasks.',failed:runState.error||'The automation run failed. Please try again.'};
+  var busy=status==='starting'||status==='processing';
+  var icon=busy?h('div',{class:'ic'},[h('span',{class:'spin'})]):h('div',{class:'ic '+status,html:status==='completed'?AI.check:status==='failed'?AI.warn:'<span class="dot"></span>'});
+  var body=h('div',{class:'abody'},[h('b',{},[messages[status]||''])]);
+  if(status==='processing'){
+    var total=runState.total||0,done=runState.completed||0,pct=total?Math.min(100,Math.round(done/total*100)):0;
+    body.appendChild(h('div',{class:'pbar',role:'progressbar','aria-valuemin':'0','aria-valuemax':String(total),'aria-valuenow':String(done)},[h('i',{style:'width:'+pct+'%'})]));
+    body.appendChild(h('div',{class:'meta'},[h('span',{},[done+'/'+total+' tasks completed']),h('span',{},['Stage: '+(runState.stage||'—')])]));
+  }
+  var section=h('section',{class:'act','aria-live':'polite'},[
+    h('div',{class:'ahead'},[h('h2',{},['Automation Activity']),h('span',{class:'st '+status},[labels[status]||status])]),
+    h('div',{class:'arow'},[icon,body])
+  ]);
+  if(status==='failed')section.appendChild(h('div',{class:'row'},[h('button',{class:'btn auto',onclick:retry},['Retry'])]));
+  if(status==='completed')section.appendChild(h('div',{class:'row'},[safeUrl(brand.uploadFolderUrl)?h('a',{class:'btn sec auto',href:brand.uploadFolderUrl,target:'_blank',rel:'noopener noreferrer'},[h('span',{html:I.folder}),'View Uploaded Files',h('span',{html:I.ext})]):h('button',{class:'btn sec auto',disabled:true},['View Uploaded Files'])]));
+  return section;
+}
+function featured(automation,brand){
+  var busy=S.run.status==='starting'||S.run.status==='processing';
+  var sheet=safeUrl(brand.contentSheetUrl)?h('a',{class:'btn sec lg auto',href:brand.contentSheetUrl,target:'_blank',rel:'noopener noreferrer'},[h('span',{html:I.sheet}),'Open Content Sheet',h('span',{html:I.ext})]):h('button',{class:'btn sec lg auto',disabled:true},[h('span',{html:I.sheet}),'Open Content Sheet']);
+  return h('section',{class:'feat'},[
+    h('div',{class:'fhead'},[h('div',{class:'ftile',html:AI.flow}),h('div',{},[h('h2',{},[brand.name]),h('div',{class:'cat'},['Gaming Brand'])]),h('span',{class:'active',style:'margin-left:auto'},['Active'])]),
+    h('p',{},[automation.desc]),
+    h('div',{class:'row'},[h('button',{class:'btn lg auto',disabled:busy,onclick:automation.trigger},[h('span',{html:AI.play}),busy?'Running...':'Run the Automation']),sheet])
+  ]);
+}
+function automationView(){
+  var brand=S.brands.filter(function(item){return item.id==='khelstake';})[0]||{name:'Khelstake',contentSheetUrl:'',uploadFolderUrl:''};
+  var box=h('div',{class:'dash'});
+  box.appendChild(h('h1',{},['Automation Studio']));
+  box.appendChild(h('p',{class:'sub'},['Generate, process and manage your brand creatives automatically.']));
+  AUTOMATIONS.forEach(function(item){box.appendChild(featured(item,brand));box.appendChild(statusPanel(S.run,brand,item.trigger));});
+  return box;
+}
+
+/* ---------- resource editor ---------- */
+function editorView(){
+  var box=h('div',{class:'dash'});
+  box.appendChild(h('h1',{},['Edit Brand Resources']));
+  box.appendChild(h('p',{class:'sub'},['Update the links and details shown in Brand Resources. Changes are saved in this browser.']));
+  sorted().forEach(function(brand){
+    var name=h('input',{type:'text',value:brand.name||'',required:true});
+    var category=h('select',{},[h('option',{value:'gaming'},['Gaming']),h('option',{value:'fintech'},['Fintech'])]);category.value=brand.category||'gaming';
+    var sheet=h('input',{type:'url',value:brand.contentSheetUrl||'',placeholder:'https://...'});
+    var guide=h('input',{type:'url',value:brand.guidelineUrl||'',placeholder:'https://...'});
+    var upload=h('input',{type:'url',value:brand.uploadFolderUrl||'',placeholder:'https://...'});
+    var message=h('span',{class:'msg'});
+    var card=h('section',{class:'erow'},[
+      h('h3',{},[brand.name||brand.id]),
+      h('div',{class:'fields'},[
+        field('Brand name',name),field('Category',category),field('Content Sheet URL',sheet),field('Brand Guidelines URL',guide),field('Upload Folder URL',upload)
+      ]),
+      h('div',{class:'acts'},[h('button',{class:'btn auto',onclick:async function(){
+        if(!name.value.trim()){message.className='msg e';message.textContent='Brand name is required.';return;}
+        if([sheet.value,guide.value,upload.value].some(function(url){return url&&!safeUrl(url);})){message.className='msg e';message.textContent='Use complete http or https URLs.';return;}
+        var updated={name:name.value.trim(),category:category.value,contentSheetUrl:sheet.value.trim(),guidelineUrl:guide.value.trim()||null,uploadFolderUrl:upload.value.trim()};
+        try{await S.db.collection('brands').doc(brand.id).set(updated);message.className='msg o';message.textContent='Saved.';}catch(error){message.className='msg e';message.textContent='Could not save: '+error.message;}
+      }},['Save changes']),message])
+    ]);
+    box.appendChild(card);
+  });
+  return box;
+}
+function field(label,control){return h('div',{class:'f'},[h('label',{},[label]),control]);}
+
+function render(){
+  var view;
+  if(S.view==='detail')view=detail();
+  else if(S.view==='home')view=home();
+  else if(S.view==='edit')view=editorView();
+  else view=automationView();
+  app.innerHTML='';app.appendChild(view);
+  navAuto.setAttribute('aria-current',S.view==='auto'?'page':'false');
+  navBrands.setAttribute('aria-current',(S.view==='home'||S.view==='detail'||S.view==='edit')?'page':'false');
+  editBtn.hidden=!S.canEdit||S.view==='auto';
+}
+function showAutomation(){S.view='auto';S.id=null;history.replaceState(null,'',location.pathname+location.search);render();window.scrollTo(0,0);}
+function showBrands(){S.view='home';S.id=null;S.q='';history.replaceState(null,'',location.pathname+location.search);render();window.scrollTo(0,0);}
+document.getElementById('home').addEventListener('click',showBrands);
+navAuto.addEventListener('click',showAutomation);
+navBrands.addEventListener('click',showBrands);
+editBtn.addEventListener('click',function(){S.view='edit';render();window.scrollTo(0,0);});
+window.addEventListener('hashchange',fromHash);
+
+async function init(){
+  render();
+  try{
+    var pair=await Promise.all([window.claude.use('db'),window.claude.use('user')]);
+    S.db=pair[0];S.canEdit=!!(pair[1]&&(pair[1].canEdit()||pair[1].isOwner()));
+    S.db.collection('brands').onSnapshot(function(snapshot){
+      S.brands=snapshot.docs.map(function(doc){return Object.assign({id:doc.id},doc.data());});
+      S.ready=true;render();
+    },function(error){S.ready=true;app.textContent='Could not load brand resources: '+error.message;});
+  }catch(error){S.ready=true;app.textContent='Could not initialize the Brand Resource Hub: '+error.message;}
+}
+var hashId=location.hash.slice(1);
+if(hashId){S.id=hashId;S.view='detail';}
+init();
+})();
+</script>
+</body>
+</html>

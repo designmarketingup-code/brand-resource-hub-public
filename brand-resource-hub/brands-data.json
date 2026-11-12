@@ -1,0 +1,50 @@
+[
+  {
+    "id": "digithaya",
+    "category": "fintech",
+    "contentSheetUrl": "https://docs.google.com/spreadsheets/d/14IHDemIwuaWk7EfeVmjbuEGUyZLZW5hNFibm_MDyT8w/edit?gid=0#gid=0",
+    "guidelineUrl": "https://drive.google.com/drive/folders/17S1iJGFZJIercNYoEOK8jQ3Q7uOuUuI7",
+    "name": "Digithaya",
+    "uploadFolderUrl": "https://drive.google.com/drive/folders/1MK6ig2ady_5N7z8Ve9JPbK6EjSmwZknZ"
+  },
+  {
+    "id": "khelosports",
+    "category": "gaming",
+    "contentSheetUrl": "https://docs.google.com/spreadsheets/d/1RyKl9ZTN66WN7aL4lfZRM1_AR-ics2I_4DGCA6bNigU/edit?gid=0#gid=0",
+    "guidelineUrl": null,
+    "name": "Khelosports",
+    "uploadFolderUrl": "https://drive.google.com/drive/folders/1MK6ig2ady_5N7z8Ve9JPbK6EjSmwZknZ"
+  },
+  {
+    "id": "khelstake",
+    "category": "gaming",
+    "contentSheetUrl": "https://docs.google.com/spreadsheets/d/1qpZ6YbZIIcnecNcPp3WQD7yisAh7Z0nOx6dcafUVBDU/edit?gid=0#gid=0",
+    "guidelineUrl": null,
+    "name": "Khelstake",
+    "uploadFolderUrl": "https://drive.google.com/drive/folders/1WwmOqh1EMIE9hhhA6rm6oB9PMFD4dEvX"
+  },
+  {
+    "id": "rugr-sil",
+    "category": "fintech",
+    "contentSheetUrl": "https://docs.google.com/spreadsheets/d/1LGL1xWP8O5v1xfEEoY50_gdjBCsK7nV_AxNzfU8YLbY/edit?gid=0#gid=0",
+    "guidelineUrl": "https://drive.google.com/drive/folders/17S1iJGFZJIercNYoEOK8jQ3Q7uOuUuI7",
+    "name": "Rugr Sil",
+    "uploadFolderUrl": "https://drive.google.com/drive/folders/1MK6ig2ady_5N7z8Ve9JPbK6EjSmwZknZ"
+  },
+  {
+    "id": "spinmatch",
+    "category": "gaming",
+    "contentSheetUrl": "https://docs.google.com/spreadsheets/d/1D-VT9c2_YM04KrjVpAkLq_KNT9_X1NoJsZYB70PmLLY/edit?gid=0#gid=0",
+    "guidelineUrl": null,
+    "name": "Spinmatch",
+    "uploadFolderUrl": "https://drive.google.com/drive/folders/1MK6ig2ady_5N7z8Ve9JPbK6EjSmwZknZ"
+  },
+  {
+    "id": "zrika",
+    "category": "fintech",
+    "contentSheetUrl": "https://docs.google.com/spreadsheets/d/14IHDemIwuaWk7EfeVmjbuEGUyZLZW5hNFibm_MDyT8w/edit?gid=0#gid=0",
+    "guidelineUrl": "https://drive.google.com/drive/folders/17S1iJGFZJIercNYoEOK8jQ3Q7uOuUuI7",
+    "name": "Zrika",
+    "uploadFolderUrl": "https://drive.google.com/drive/folders/1MK6ig2ady_5N7z8Ve9JPbK6EjSmwZknZ"
+  }
+]

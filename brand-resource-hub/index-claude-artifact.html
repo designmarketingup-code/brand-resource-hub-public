@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brand Resource Hub</title>
+<style>
+:root{--blue:#2563EB;--blue-d:#1D4ED8;--bg:#F8FAFC;--white:#FFFFFF;--text:#111827;--muted:#64748B;--border:#E2E8F0;--light:#EFF6FF;--ok:#16A34A;--warn:#F59E0B;--bad:#DC2626;
+color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 "Google Sans","Segoe UI",Roboto,-apple-system,Helvetica,Arial,sans-serif;background-color:var(--bg)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--white);z-index:10}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--white);border-bottom:1px solid var(--border)}
+.bar{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer;border:0;background:none;text-align:left;padding:0;font:inherit;color:inherit}
+.logo i{width:36px;height:36px;border-radius:10px;background:var(--blue);color:#fff;display:grid;place-items:center;font-style:normal;font-weight:700}
+.logo b{display:block;font-size:18px;line-height:1.2}.logo small{display:block;color:var(--muted);font-size:12px}
+main{max-width:1120px;margin:0 auto;padding:48px 24px 72px}
+h1{font-size:clamp(28px,4vw,40px);line-height:1.15;margin:0 0 8px;text-align:center;letter-spacing:-.02em}
+.sub{color:var(--muted);text-align:center;margin:0 0 28px;font-size:17px}
+.search{position:relative;max-width:640px;margin:0 auto 24px}
+.search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.search input{width:100%;height:56px;border:1px solid var(--border);border-radius:28px;padding:0 20px 0 50px;font:inherit;font-size:17px;background:var(--white);box-shadow:0 1px 2px rgba(15,23,42,.06);outline:none}
+.search input:focus,.f input:focus,.f select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+.tabs{display:flex;justify-content:center;gap:8px;margin-bottom:32px;flex-wrap:wrap}
+.tab{border:1px solid var(--border);background:var(--white);color:var(--text);border-radius:999px;padding:10px 20px;font:inherit;font-weight:500;cursor:pointer}
+.tab:hover{background:var(--light)}.tab[aria-selected=true]{background:var(--light);border-color:var(--blue);color:var(--blue)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}main{padding:32px 16px 56px}.bar{padding:12px 16px}.logo small{display:none}}
+.card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 1px 2px rgba(15,23,42,.04);display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:border-color .12s,box-shadow .12s}
+.card:hover{border-color:#BFDBFE;box-shadow:0 2px 8px rgba(15,23,42,.08)}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card h3{margin:0;font-size:20px}.cat{color:var(--muted);font-size:14px;margin-bottom:10px}
+.active{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ok);background:#F0FDF4;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.active::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--blue);background:var(--blue);color:#fff;font:inherit;font-weight:500;text-decoration:none;cursor:pointer;width:100%;transition:background .12s}
+.btn:hover{background:var(--blue-d)}.btn:active{transform:translateY(1px)}
+.btn.sec{background:var(--white);color:var(--blue)}.btn.sec:hover{background:var(--light)}
+.btn.auto{width:auto}.btn.danger{background:var(--white);color:var(--bad);border-color:#FECACA}.btn.danger:hover{background:#FEF2F2}
+.btn:focus-visible,.tab:focus-visible,.card:focus-visible{outline:3px solid rgba(37,99,235,.35);outline-offset:2px}
+.btn svg{flex:none}.btn .ext{margin-left:auto;opacity:.8}
+.card .btn{margin-top:8px}
+.empty{text-align:center;padding:56px 0;color:var(--muted)}.empty b{display:block;color:var(--text);font-size:20px;margin-bottom:4px}
+.guide{margin-top:48px;background:var(--light);border:1px solid #BFDBFE;border-radius:16px;padding:24px}
+.guide h2{margin:0 0 4px;font-size:22px}.guide p{margin:0;color:var(--muted)}.guide h3{margin:16px 0 4px;font-size:16px}.guide h3+p{color:var(--text)}
+.back{background:none;border:0;color:var(--blue);font:inherit;font-weight:500;cursor:pointer;padding:0;margin-bottom:20px}
+.detail{max-width:720px;margin:0 auto}.detail h1{text-align:left;margin-bottom:4px}
+.pill{display:inline-block;background:var(--light);color:var(--blue);border-radius:999px;padding:2px 12px;font-size:13px;font-weight:500;margin-bottom:24px}
+.res{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.res h3{margin:0}.res p{margin:2px 0 0;color:var(--muted)}.res .btn{width:auto;min-width:220px}
+.mh{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:24px}.mh h1{text-align:left;margin:0;font-size:28px}
+.erow{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px}
+.erow h3{margin:0 0 12px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.fields{grid-template-columns:1fr}}
+.f label{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}.f.w{grid-column:1/-1}
+.f input,.f select{width:100%;height:44px;border:1px solid var(--border);border-radius:10px;padding:0 12px;font:inherit;background:var(--white);outline:none}
+.f input:disabled{background:var(--bg);color:var(--muted)}
+.acts{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;align-items:center}.msg{font-size:14px}.msg.e{color:var(--bad)}.msg.o{color:var(--ok)}
+.ov{position:fixed;inset:0;background:rgba(17,24,39,.4);display:grid;place-items:center;z-index:20;padding:16px}
+.dlg{background:#fff;border-radius:16px;padding:24px;max-width:400px;width:100%}.dlg h3{margin:0 0 8px}.dlg p{color:var(--muted);margin:0 0 20px}.dlg .acts{justify-content:flex-end;margin:0}
+.note{background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:12px 16px;margin-bottom:20px;color:#92400E}
+.nav{display:flex;gap:4px;background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:4px}
+.nav button{border:0;background:none;font:inherit;font-weight:500;color:var(--muted);padding:8px 18px;border-radius:999px;cursor:pointer}
+.nav button:hover{color:var(--text)}.nav button[aria-current=page]{background:var(--blue);color:#fff}
+.nav button:focus-visible{outline:3px solid rgba(37,99,235,.35);outline-offset:2px}
+@media(max-width:700px){.bar{flex-wrap:wrap}.nav{order:3;width:100%}.nav button{flex:1;padding:8px 10px}}
+.dash{max-width:880px;margin:0 auto}.dash h1,.dash .sub{text-align:left}.dash h1{font-size:clamp(30px,4.5vw,44px)}
+.feat{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:32px;box-shadow:0 2px 8px rgba(15,23,42,.06)}
+.fhead{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.ftile{width:52px;height:52px;border-radius:14px;background:var(--light);color:var(--blue);display:grid;place-items:center;flex:none}
+.feat h2{margin:0;font-size:28px;line-height:1.2}.feat .cat{margin:0}.feat>p{font-size:17px;color:var(--muted);margin:0 0 24px;max-width:620px}
+.row{display:flex;gap:12px;flex-wrap:wrap}.row .btn{width:auto}.btn.lg{height:56px;font-size:17px;padding:0 28px;border-radius:12px}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.fnote{margin-top:14px;font-size:14px;color:#92400E}
+.act{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px;margin-top:20px}
+.ahead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.ahead h2{margin:0;font-size:20px}
+.st{font-size:13px;font-weight:500;border-radius:999px;padding:3px 12px;background:var(--bg);color:var(--muted);border:1px solid var(--border)}
+.st.starting,.st.processing{background:var(--light);color:var(--blue);border-color:#BFDBFE}.st.completed{background:#F0FDF4;color:var(--ok);border-color:#BBF7D0}.st.failed{background:#FEF2F2;color:var(--bad);border-color:#FECACA}
+.arow{display:flex;gap:16px;align-items:flex-start}.abody{flex:1;min-width:0}.abody>b{display:block;font-weight:500;font-size:17px}
+.ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--bg);border:1px solid var(--border)}
+.ic.completed{background:#F0FDF4;border-color:#BBF7D0;color:var(--ok)}.ic.failed{background:#FEF2F2;border-color:#FECACA;color:var(--bad)}
+.dot{width:10px;height:10px;border-radius:50%;background:#94A3B8;display:block}
+.spin{width:20px;height:20px;border:2.5px solid #BFDBFE;border-top-color:var(--blue);border-radius:50%;animation:sp .9s linear infinite;display:block}
+@keyframes sp{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.spin{animation-duration:3s}}
+.pbar{height:10px;background:var(--light);border-radius:999px;overflow:hidden;margin-top:14px}.pbar i{display:block;height:100%;background:var(--blue);border-radius:999px;transition:width .3s}
+.meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:14px;margin-top:8px}
+.arow+.row{margin-top:16px}
+@media(max-width:600px){.feat{padding:20px}.row .btn{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <button class="logo" id="home" aria-label="Home"><i>B</i><span><b>Brand Resource Hub</b><small>Internal Design Resource Center</small></span></button>
+  <nav class="nav" aria-label="Sections"><button id="navAuto">Automation</button><button id="navBrands">Brand Resources</button></nav>
+  <button class="btn sec auto" id="editBtn" hidden>Edit Resources</button>
+</div></header>
+<main id="app"></main>
+<script>
+(function(){
+var I={
+ sheet:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>',
+ folder:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
+ shield:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+ ext:'<svg class="ext" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+ search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'};
+var RES={content:{key:'contentSheetUrl',label:'Content Sheet',btn:'Open Content Sheet',icon:'sheet',desc:'Manage and view the brand’s content requirements.'},
+ guide:{key:'guidelineUrl',label:'Brand Guidelines',btn:'Brand Guidelines',icon:'shield',desc:'Review brand-specific design rules before working.'},
+ upload:{key:'uploadFolderUrl',label:'Upload Folder',btn:'Open Upload Folder',icon:'folder',desc:'Upload finished design files to the correct Google Drive folder.'}};
+var S={brands:[],ready:false,db:null,canEdit:false,view:'auto',run:{status:'ready',completed:0,total:0,stage:'',error:'',note:''},cat:'gaming',q:'',id:null,draft:false,timedOut:false};
+var app=document.getElementById('app'),editBtn=document.getElementById('editBtn');
+
+function h(t,a,k){var e=document.createElement(t);a=a||{};for(var n in a){if(n==='class')e.className=a[n];else if(n==='html')e.innerHTML=a[n];else if(n.slice(0,2)==='on')e.addEventListener(n.slice(2),a[n]);else if(a[n]!==false&&a[n]!=null)e.setAttribute(n,a[n]===true?'':a[n])}
+ (k||[]).forEach(function(c){if(c==null)return;e.appendChild(typeof c==='string'?document.createTextNode(c):c)});return e}
+function resKeys(b){return b.category==='fintech'?['content','guide','upload']:['content','upload']}
+function catName(c){return c==='fintech'?'Fintech':'Gaming'}
+function safeUrl(u){return /^https?:\/\//i.test(u||'')}
+function link(b,r){var d=RES[r],u=b[d.key];
+ if(!safeUrl(u))return h('button',{class:'btn sec',disabled:true,onclick:function(e){e.stopPropagation()}},[h('span',{html:I[d.icon]}),d.btn+' (link missing)']);
+ return h('a',{class:'btn',href:u,target:'_blank',rel:'noopener noreferrer',onclick:function(e){e.stopPropagation()}},[h('span',{html:I[d.icon]}),d.btn,h('span',{html:I.ext})])}
+function sorted(){return S.brands.slice().sort(function(a,b){return (a.name||'').localeCompare(b.name||'')})}
+
+function go(id){S.view=id?'detail':'home';S.id=id||null;if(id)location.hash=id;else history.replaceState(null,'',location.pathname+location.search);render();window.scrollTo(0,0)}
+function fromHash(){var id=location.hash.slice(1);if(id){S.id=id;S.view='detail'}else if(S.view==='detail'){S.view='home'}render()}
+
+function card(b){
+ var c=h('div',{class:'card',tabindex:'0',role:'link','aria-label':b.name+' resources',onclick:function(){go(b.id)},onkeydown:function(e){if(e.key==='Enter'&&e.target===c)go(b.id)}},[
+  h('div',{class:'top'},[h('h3',{},[b.name]),h('span',{class:'active'},['Active'])]),
+  h('div',{class:'cat'},[catName(b.category)+' Brand'])]);
+ resKeys(b).forEach(function(r){c.appendChild(link(b,r))});return c}
+
+function home(){
+ var q=S.q.trim().toLowerCase(),list=sorted(),box=h('div');
+ var sb=h('input',{type:'search',id:'q',placeholder:'Search brands...','aria-label':'Search brands',autocomplete:'off',value:S.q,oninput:function(e){S.q=e.target.value;drawList()}});
+ box.appendChild(h('h1',{},['Find your brand resources']));
+ box.appendChild(h('p',{class:'sub'},['Quick access to content sheets, upload folders, and brand guidelines.']));
+ box.appendChild(h('div',{class:'search'},[h('span',{html:I.search}),sb]));
+ var tabs=h('div',{class:'tabs',role:'tablist'}),out=h('div');
+ [['gaming','Gaming Brands'],['fintech','Fintech Brands']].forEach(function(t){tabs.appendChild(h('button',{class:'tab',role:'tab','data-c':t[0],onclick:function(){S.cat=t[0];S.q='';sb.value='';drawList()}},[t[1]]))});
+ box.appendChild(tabs);box.appendChild(out);
+ function drawList(){
+  var qq=S.q.trim().toLowerCase(),res;
+  if(qq){res=list.filter(function(b){return (b.name||'').toLowerCase().indexOf(qq)>-1||(b.category||'').toLowerCase().indexOf(qq)>-1||(catName(b.category)+' brands').toLowerCase().indexOf(qq)>-1})}
+  else res=list.filter(function(b){return b.category===S.cat});
+  Array.prototype.forEach.call(tabs.children,function(t){t.setAttribute('aria-selected',String(!qq&&t.dataset.c===S.cat))});
+  out.innerHTML='';
+  if(!res.length){out.appendChild(h('div',{class:'empty'},[h('b',{},[S.ready?'No brands found':'Loading…']),S.ready?'Try searching for another brand name.':''] ));return}
+  var g=h('div',{class:'grid'});res.forEach(function(b){g.appendChild(card(b))});out.appendChild(g);
+  if(res.some(function(b){return b.category==='fintech'}))out.appendChild(guidelines());
+ }
+ drawList();return box}
+
+function guidelines(){return h('section',{class:'guide'},[h('h2',{},['Fintech Brand Guidelines']),h('p',{},['Follow the required brand rules before creating or publishing fintech content.']),
+ h('h3',{},['Before creating fintech content']),h('p',{},['Review the relevant brand guidelines before designing content. Open them from the Brand Guidelines button on each fintech brand card.'])])}
+
+function detail(){
+ var b=S.brands.filter(function(x){return x.id===S.id})[0],box=h('div',{class:'detail'});
+ box.appendChild(h('button',{class:'back',onclick:function(){go()}},['← All brands']));
+ if(!b){box.appendChild(h('div',{class:'empty'},[h('b',{},[S.ready?'Brand not found':'Loading…'])]));return box}
+ box.appendChild(h('h1',{},[b.name]));box.appendChild(h('span',{class:'pill'},[catName(b.category)]));
+ resKeys(b).forEach(function(r){var d=RES[r];
+  var l=link(b,r);l.textContent='';l.appendChild(h('span',{html:I[d.icon]}));l.appendChild(document.createTextNode('Open '+d.label));if(l.tagName==='A')l.appendChild(h('span',{html:I.ext}));
+  box.appendChild(h('div',{class:'res'},[h('div',{},[h('h3',{},[d.label]),h('p',{},[d.desc])]),l]))});
+ return box}
+
+/* ---------- automation ---------- */
+/* Backend wiring lives here, separate from the UI. Never put API keys or webhook secrets in this file:
+   call n8n through your own server-side endpoint and set it below. */
+var AUTOMATION_CONFIG={endpoint:null};
+var AUTOMATIONS=[{id:'khelstake',desc:'Automatically generate gaming promotional creatives using your approved content sheet and brand-specific creative workflow.',trigger:function(){return triggerKhelstakeAutomation()}}];
+var AI={
+ flow:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="19" r="2"/><path d="M7 6h10M6 8l5 9M18 8l-5 9"/></svg>',
+ play:'<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+ check:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>',
+ warn:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v5M12 17h.01"/><path d="M10.3 4L2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4a2 2 0 0 0-3.4 0z"/></svg>'};
+/* Status shape (feed this from n8n later): {status:'ready'|'starting'|'processing'|'completed'|'failed', completed, total, stage, error} */
+function setAutomationRun(p){Object.assign(S.run,p);if(S.view==='auto')render()}
+window.setAutomationRun=setAutomationRun;
+function triggerKhelstakeAutomation(){
+ if(!AUTOMATION_CONFIG.endpoint){setAutomationRun({status:'ready',note:'The automation backend isn\u2019t connected yet.'});return}
+ setAutomationRun({status:'starting',note:'',error:''});
+ /* TODO: call the n8n workflow via the server-side endpoint, then report progress with
+    setAutomationRun({status:'processing',completed:4,total:30,stage:'...'}) and finish with 'completed' or 'failed'. */
+}
+function statusPanel(r,b,run){
+ var s=r.status,L={ready:'Ready',starting:'Starting',processing:'Processing',completed:'Completed',failed:'Failed'};
+ var msg={ready:'Ready to process tasks.',starting:'Starting your automation...',processing:'Generating creatives using Magnific AI.',completed:'All creatives generated successfully.',failed:r.error||'The automation run failed. Please try again.'}[s]||'';
+ var busy=s==='starting'||s==='processing';
+ var ic=busy?h('div',{class:'ic'},[h('span',{class:'spin'})]):h('div',{class:'ic '+s,html:s==='completed'?AI.check:s==='failed'?AI.warn:'<span class="dot"></span>'});
+ var body=h('div',{class:'abody'},[h('b',{},[msg])]);
+ if(s==='ready'&&r.note)body.appendChild(h('div',{class:'meta'},[r.note]));
+ if(s==='processing'){
+  var total=r.total||0,done=r.completed||0,pct=total?Math.min(100,Math.round(done/total*100)):0;
+  body.appendChild(h('div',{class:'pbar',role:'progressbar','aria-valuemin':'0','aria-valuemax':String(total),'aria-valuenow':String(done)},[h('i',{style:'width:'+pct+'%'})]));
+  body.appendChild(h('div',{class:'meta'},[h('span',{},[done+'/'+total+' tasks completed']),h('span',{},['Stage: '+(r.stage||'\u2014')])]));
+ }
+ if(s==='completed')body.appendChild(h('div',{class:'meta'},[(r.completed||0)+' tasks completed']));
+ var sec=h('section',{class:'act','aria-live':'polite'},[h('div',{class:'ahead'},[h('h2',{},['Automation Activity']),h('span',{class:'st '+s},[L[s]||s])]),h('div',{class:'arow'},[ic,body])]);
+ var acts=null;
+ if(s==='failed')acts=h('div',{class:'row'},[h('button',{class:'btn auto',onclick:run},['Retry'])]);
+ if(s==='completed')acts=h('div',{class:'row'},[safeUrl(b.uploadFolderUrl)?h('a',{class:'btn sec auto',href:b.uploadFolderUrl,target:'_blank',rel:'noopener noreferrer'},[h('span',{html:I.folder}),'View Uploaded Files',h('span',{html:I.ext})]):h('button',{class:'btn sec auto',disabled:true},['View Uploaded Files'])]);
+ if(acts)sec.appendChild(acts);
+ return sec}
+function featured(a,b){
+ var busy=S.run.status==='starting'||S.run.status==='processing';
+ var sheet=safeUrl(b.contentSheetUrl)?h('a',{class:'btn sec lg auto',href:b.contentSheetUrl,target:'_blank',rel:'noopener noreferrer'},[h('span',{html:I.sheet}),'Open Content Sheet',h('span',{html:I.ext})]):h('button',{class:'btn sec lg auto',disabled:true},[h('span',{html:I.sheet}),'Open Content Sheet']);
+ var c=h('section',{class:'feat'},[
+  h('div',{class:'fhead'},[h('div',{class:'ftile',html:AI.flow}),h('div',{},[h('h2',{},[b.name]),h('div',{class:'cat'},['Gaming Brand'])]),h('span',{class:'active',style:'margin-left:auto'},['Active'])]),
+  h('p',{},[a.desc]),
+  h('div',{class:'row'},[h('button',{class:'btn lg auto',disabled:busy,onclick:a.trigger},[h('span',{html:AI.play}),busy?'Running...':'Run the Automation']),sheet])]);
+ if(S.run.note&&S.run.status==='ready')c.appendChild(h('div',{class:'fnote'},[S.run.note]));
+ return c}
+function automation(){
+ var b=S.brands.filter(function(x){return x.id==='khelstake'})[0]||{name:'Khelstake'};
+ var box=h('div',{class:'dash'});
+ box.appendChild(h('h1',{},['Automation Studio']));
+ box.appendChild(h('p',{class:'sub'},['Generate, process and manage your brand creatives automatically.']));
+ AUTOMATIONS.forEach(function(a){box.appendChild(featured(a,b));box.appendChild(statusPanel(S.run,b,a.trigger))});
+ return box}
+
+/* ---------- edit ---------- */
+function slug(n){return (n||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')}
+function field(l,input,w){return h('div',{class:'f'+(w?' w':'')},[h('label',{},[l]),input])}
+function row(b,isNew){
+ var el=h('div',{class:'erow'}),msg=h('span',{class:'msg'});
+ var name=h('input',{type:'text',value:b.name||'',placeholder:'Brand name'});
+ var cat=h('select',{},[h('option',{value:'gaming'},['Gaming']),h('option',{value:'fintech'},['Fintech'])]);cat.value=b.category||'gaming';
+ var cs=h('input',{type:'url',value:b.contentSheetUrl||'',placeholder:'Google Sheet URL'});
+ var uf=h('input',{type:'url',value:b.uploadFolderUrl||'',placeholder:'Google Drive URL'});
+ var gl=h('input',{type:'url',value:b.guidelineUrl||'',placeholder:'Google Drive URL'});
+ function sync(){var f=cat.value==='fintech';gl.disabled=!f;gl.placeholder=f?'Google Drive URL':'Not applicable'}
+ cat.onchange=sync;sync();
+ function save(){
+  var v={name:name.value.trim(),category:cat.value,contentSheetUrl:cs.value.trim(),uploadFolderUrl:uf.value.trim(),guidelineUrl:cat.value==='fintech'?gl.value.trim():null},err='';
+  if(!v.name)err='Brand name is required.';
+  else if(!safeUrl(v.contentSheetUrl)||!safeUrl(v.uploadFolderUrl))err='Content Sheet and Upload Folder need valid https:// links.';
+  else if(v.category==='fintech'&&!safeUrl(v.guidelineUrl))err='Brand Guidelines link is required for Fintech brands.';
+  if(err){msg.className='msg e';msg.textContent=err;return}
+  var id=b.id;if(!id){id=slug(v.name)||('brand-'+Date.now());if(S.brands.some(function(x){return x.id===id}))id+='-'+Date.now().toString(36)}
+  msg.className='msg';msg.textContent='Saving…';
+  S.db.collection('brands').doc(id).set(v).then(function(){
+   if(isNew){S.draft=false;b.id=id;S.brands=S.brands.filter(function(x){return x.id!==id}).concat([Object.assign({id:id},v)]);render()}
+   else{Object.assign(b,v);msg.className='msg o';msg.textContent='Saved'}
+  }).catch(function(e){msg.className='msg e';msg.textContent='Could not save: '+((e&&e.message)||'permission denied')});
+ }
+ el.appendChild(h('h3',{},[isNew?'New brand':(b.name||'Brand')]));
+ el.appendChild(h('div',{class:'fields'},[field('Brand name',name),field('Category',cat),field('Content Sheet',cs,1),field('Upload Folder',uf,1),field('Brand Guidelines',gl,1)]));
+ var acts=h('div',{class:'acts'},[h('button',{class:'btn auto',onclick:save},['Save Changes'])]);
+ if(isNew)acts.appendChild(h('button',{class:'btn sec auto',onclick:function(){S.draft=false;render()}},['Cancel']));
+ else acts.appendChild(h('button',{class:'btn danger auto',onclick:function(){confirmDel(b)}},['Delete Brand']));
+ acts.appendChild(msg);el.appendChild(acts);return el}
+function confirmDel(b){
+ var ov=h('div',{class:'ov',role:'dialog','aria-modal':'true'},[h('div',{class:'dlg'},[h('h3',{},['Delete '+b.name+'?']),h('p',{},['This removes the brand and its links for everyone. This can’t be undone.']),
+  h('div',{class:'acts'},[h('button',{class:'btn sec auto',onclick:function(){ov.remove()}},['Cancel']),h('button',{class:'btn auto',style:'background:#DC2626;border-color:#DC2626',onclick:function(){
+   S.db.collection('brands').doc(b.id).delete().then(function(){S.brands=S.brands.filter(function(x){return x.id!==b.id});ov.remove();render()}).catch(function(e){ov.remove();alert('Could not delete: '+((e&&e.message)||'permission denied'))})}},['Delete'])])])]);
+ document.body.appendChild(ov)}
+function edit(){
+ var box=h('div');
+ box.appendChild(h('div',{class:'mh'},[h('h1',{},['Manage Brand Resources']),h('div',{class:'acts',style:'margin:0'},[
+  h('button',{class:'btn sec auto',onclick:function(){S.draft=true;render()}},['+ Add Brand']),h('button',{class:'btn auto',onclick:function(){S.view='home';render()}},['Done'])])]));
+ if(S.draft)box.appendChild(row({category:'gaming'},true));
+ sorted().forEach(function(b){box.appendChild(row(b,false))});return box}
+
+function render(){
+ editBtn.hidden=!S.canEdit;editBtn.textContent=S.view==='edit'?'Back to brands':'Edit Resources';
+ document.getElementById('navAuto').setAttribute('aria-current',S.view==='auto'?'page':'false');
+ document.getElementById('navBrands').setAttribute('aria-current',S.view==='auto'?'false':'page');
+ app.innerHTML='';
+ if(S.timedOut&&!S.ready){app.appendChild(h('div',{class:'note'},['Brand data could not be loaded. Open this page from claude.ai while signed in.']))}
+ app.appendChild(S.view==='auto'?automation():S.view==='edit'&&S.canEdit?edit():S.view==='detail'?detail():home());
+}
+function goAuto(){S.view='auto';S.id=null;history.replaceState(null,'',location.pathname+location.search);render();window.scrollTo(0,0)}
+document.getElementById('home').onclick=goAuto;
+document.getElementById('navAuto').onclick=goAuto;
+document.getElementById('navBrands').onclick=function(){S.q='';go()};
+editBtn.onclick=function(){S.view=S.view==='edit'?'home':'edit';S.draft=false;render();window.scrollTo(0,0)};
+window.addEventListener('hashchange',fromHash);
+
+/* ---------- data ---------- */
+function load(a,b,c){
+ if(!a){S.timedOut=true;render();return}
+ S.db=a;
+ a.collection('brands').onSnapshot(function(snap){
+  S.brands=snap.docs.map(function(d){return Object.assign({id:d.id},d.data())});S.ready=true;
+  if(S.view!=='edit')render();
+ },function(){S.timedOut=true;render()});
+ if(b){try{S.canEdit=!!b.canEdit()}catch(e){}render()}
+}
+fromHash();
+setTimeout(function(){if(!S.ready){S.timedOut=true;render()}},10000);
+if(window.claude&&claude.use){
+ Promise.all([claude.use('db').catch(function(){return null}),claude.use('user').catch(function(){return null})]).then(function(r){load(r[0],r[1])});
+}else{S.timedOut=true;render()}
+})();
+</script>
+</body>
+</html>
